@@ -8,7 +8,7 @@ package com.smart;
  */
 public interface ConfigConstant {
 
-    String CONFIG_FILE = "smart.config";
+    String CONFIG_FILE = "smart.properties";
 
     String JDBC_DRIVER = "smart.jdbc.driver";
     String JDBC_URL = "smart.jdbc.url";
