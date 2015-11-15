@@ -59,10 +59,13 @@ public final class ClassUtil {
                 if (url != null){
                     String protocol = url.getProtocol();
                     if (protocol.equals("file")){
+
                         //如果是文件
                         String packagePath = url.getPath().replaceAll("%20" , " ");
                         addClass(classSet , packagePath , packageName);
+
                     } else if (protocol.equals("jar")){
+
                         //Jar包
                         JarURLConnection jarURLConnection = (JarURLConnection)url.openConnection();
                         if (jarURLConnection != null){
@@ -79,6 +82,7 @@ public final class ClassUtil {
                                 }
                             }
                         }
+
                     }
                 }
             }
@@ -107,25 +111,27 @@ public final class ClassUtil {
         for (File file : files) {
             String fileName = file.getName();
             if (file.isFile()) {
+
                 //文件
                 String className = fileName.substring(0 , fileName.lastIndexOf("."));   //去除.clss文件后缀
                 if (StringUtil.isNotEmpty(packageName)) {
                     className = packageName + "." + className;
                 }
                 doAddClass(classSet , className);
+
             } else {
+
                 //文件夹
                 String subPackagePath = fileName;
                 if (StringUtil.isNotEmpty(packagePath)) {
-                    //包名路径
-                    subPackagePath = packagePath + "/" + subPackagePath;
+                    subPackagePath = packagePath + "/" + subPackagePath;    //包名路径
                 }
                 String subPackageName = fileName;
                 if (StringUtil.isNotEmpty(packageName)) {
-                    //包名
-                    subPackageName = packageName + "." + subPackageName;
+                    subPackageName = packageName + "." + subPackageName;    //包名
                 }
                 addClass(classSet , subPackagePath , subPackageName);
+
             }
         }
     }

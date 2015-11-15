@@ -24,4 +24,12 @@ public final class StringUtil {
         return  !isEmpty(str);
     }
 
+    /**
+     * 拆分字符串
+     */
+    public static String[] splitString(String  str , String arg) {
+        return StringUtils.split(str, arg);
+    }
+
+
 }
