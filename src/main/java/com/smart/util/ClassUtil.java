@@ -33,7 +33,10 @@ public final class ClassUtil {
     /**
      * 加载类
      */
-    public static Class<?> loadClass(String className , boolean isInitialized){
+    public static Class<?> loadClass(String className) {
+        return loadClass(className , false);
+    }
+    public static Class<?> loadClass(String className , boolean isInitialized) {
         Class<?> cls;
         try {
             cls = Class.forName(className , isInitialized , getClassLoader());
