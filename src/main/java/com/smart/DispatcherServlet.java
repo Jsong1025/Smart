@@ -35,6 +35,7 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
+
         // 初始化相关Helper类
         HelperLoader.init();
 
@@ -59,6 +60,7 @@ public class DispatcherServlet extends HttpServlet {
         //获取Action处理器
         Handler handler = ControllerHelper.getHandler(requestMethod , requestPath);
         if (handler != null) {
+
             // 获取Controller及其Bean实例
             Class<?> controllerClass = handler.getControllerClass();
             Object controllerBean = BeanHelper.getBean(controllerClass);
@@ -94,19 +96,21 @@ public class DispatcherServlet extends HttpServlet {
             Object result = ReflectionUtil.invokeMathod(controllerBean , actionMethod , param);
 
             //处理Action返回值
-            if (request instanceof View) {
+            if (result instanceof View) {
                 //返回JSP页面
                 View view = (View)result;
                 String path = view.getPath();
+
                 if (StringUtil.isNotEmpty(path)) {
                     if (path.startsWith("/")) {
                         response.sendRedirect(request.getContextPath() + path);
                     } else {
                         Map<String , Object> model = view.getModel();
+
                         for (Map.Entry<String , Object> entry : model.entrySet()) {
                             request.setAttribute(entry.getKey() , entry.getValue());
                         }
-                        request.getRequestDispatcher(ConfigHelper.getAppJspPath() + path).forward(request , response);
+                        request.getRequestDispatcher(ConfigHelper.getAppJspPath() + path).forward(request, response);
                     }
                 }
 
@@ -125,5 +129,6 @@ public class DispatcherServlet extends HttpServlet {
                 }
             }
         }
+
     }
 }

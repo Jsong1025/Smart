@@ -26,11 +26,13 @@ public final class ControllerHelper {
     static {
         // 获取所有的Controller类
         Set<Class<?>> controllerClassSet = ClassHelper.getControllerClassSet();
+
         if (CollectionUtil.isNotEmpty(controllerClassSet)) {
             for (Class<?> controllerClass : controllerClassSet) {
 
                 // 获取Controller类中的方法
                 Method[] methods = controllerClass.getDeclaredMethods();
+
                 if (ArrayUtil.isNotEmpty(methods)) {
                     for (Method method : methods) {
 
@@ -42,7 +44,7 @@ public final class ControllerHelper {
                             String mapping = action.value();
 
                             // 验证URL映射规则
-                            if (mapping.matches("\\w+/\\w*")) {
+                            if (mapping.matches("\\w+:/\\w*")) {
                                 String[] array = mapping.split(":");
                                 if (ArrayUtil.isNotEmpty(array) && array.length == 2) {
 
