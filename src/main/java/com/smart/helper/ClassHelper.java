@@ -4,6 +4,7 @@ import com.smart.annotation.Controller;
 import com.smart.annotation.Service;
 import com.smart.util.ClassUtil;
 
+import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,6 +65,30 @@ public final class ClassHelper {
         Set<Class<?>> classSet = new HashSet<Class<?>>();
         classSet.addAll(getServiceClassSet());
         classSet.addAll(getControllerClassSet());
+        return classSet;
+    }
+
+    /**
+     * 获取应用包名下某父类（或接口）的所有子类（或实现类）
+     */
+    public static Set<Class<?>> getClassSetBySuper(Class<?> superClass) {
+        Set<Class<?>> classSet = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            classSet.add(cls);
+        }
+        return classSet;
+    }
+
+    /**
+     * 获取应用包名下带有注解的所有类
+     */
+    public static Set<Class<?>> getClassSetByAnnotation(Class<? extends Annotation> annotaionClass) {
+        Set<Class<?>> classSet = new HashSet<>();
+        for (Class<?> cls : CLASS_SET) {
+            if (cls.isAnnotationPresent(annotaionClass)) {
+                classSet.add(cls);
+            }
+        }
         return classSet;
     }
 

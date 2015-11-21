@@ -1,9 +1,6 @@
 package com.smart;
 
-import com.smart.helper.BeanHelper;
-import com.smart.helper.ClassHelper;
-import com.smart.helper.ControllerHelper;
-import com.smart.helper.IocHelper;
+import com.smart.helper.*;
 import com.smart.util.ClassUtil;
 
 /**
@@ -15,6 +12,7 @@ public final class HelperLoader {
         Class<?>[] classList = {
                 ClassHelper.class ,
                 BeanHelper.class ,
+                AopHelper.class ,
                 IocHelper.class ,
                 ControllerHelper.class
         };
