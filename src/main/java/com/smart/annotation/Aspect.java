@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 public @interface Aspect {
 
     /**
-     * 注解
+     * 被代理的类注解
      */
     Class<? extends Annotation> value();
 

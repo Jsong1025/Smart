@@ -14,6 +14,9 @@ import java.util.List;
  */
 public class ProxyManager {
 
+    /**
+     * 创建指定方法的代理对象
+     */
     public static <T> T createProxy (final Class<?> targetClass , final List<Proxy> proxyList) {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(targetClass);

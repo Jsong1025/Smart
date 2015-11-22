@@ -1,5 +1,6 @@
 package com.demo.servlet;
 
+import com.demo.annotation.MyAspect;
 import com.demo.dao.HelloDao;
 import com.smart.annotation.Action;
 import com.smart.annotation.Controller;
@@ -7,6 +8,7 @@ import com.smart.annotation.Inject;
 import com.smart.bean.Param;
 import com.smart.bean.View;
 
+@MyAspect
 @Controller
 public class HelloServlet {
 
@@ -17,6 +19,7 @@ public class HelloServlet {
     public View sayHello(Param param){
         String str = dao.sayHello();
         System.out.println("hello");
+
         return new View("hello.jsp").addModel("hello",str);
     }
 }

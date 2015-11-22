@@ -74,13 +74,15 @@ public final class ClassHelper {
     public static Set<Class<?>> getClassSetBySuper(Class<?> superClass) {
         Set<Class<?>> classSet = new HashSet<>();
         for (Class<?> cls : CLASS_SET) {
-            classSet.add(cls);
+            if (superClass.isAssignableFrom(cls) && !superClass.equals(cls)) {
+                classSet.add(cls);
+            }
         }
         return classSet;
     }
 
     /**
-     * 获取应用包名下带有注解的所有类
+     * 获取应用包名下带有指定注解的所有类
      */
     public static Set<Class<?>> getClassSetByAnnotation(Class<? extends Annotation> annotaionClass) {
         Set<Class<?>> classSet = new HashSet<>();
