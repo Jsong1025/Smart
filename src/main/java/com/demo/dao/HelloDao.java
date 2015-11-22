@@ -1,6 +1,7 @@
 package com.demo.dao;
 
 import com.smart.annotation.Service;
+import com.smart.annotation.Transaction;
 
 /**
  * Created by Administrator on 2015/11/21.
@@ -8,6 +9,7 @@ import com.smart.annotation.Service;
 @Service
 public class HelloDao {
 
+    @Transaction
     public String sayHello(){
         return "hello";
     }
